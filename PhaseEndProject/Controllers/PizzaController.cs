@@ -16,9 +16,20 @@ namespace PhaseEndProject.Controllers
         {
             return View(pizzadetails);
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View(new Pizza());
+        }
+        [HttpPost]
+        public IActionResult Create(Pizza pizza)
+        {
+            if (ModelState.IsValid)
+            {
+                pizzadetails.Add(pizza);
+                return RedirectToAction("Index");
+            }
+            return View(pizza);
         }
         public IActionResult Cart(int id)
         {
